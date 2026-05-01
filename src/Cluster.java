@@ -56,7 +56,7 @@ public class Cluster {
     public synchronized Job tomarJobEnCola() throws InterruptedException {
         while (jobsEnCola.isEmpty()) {
             if (schedulerTerminado && jobsEnCola.isEmpty()) {
-                notifyAll(); // 🔥 DESPERTADOR: Avisa a otros hilos de esta misma etapa
+                notifyAll(); 
                 return null;
             }
             wait();
@@ -73,8 +73,8 @@ public class Cluster {
     public synchronized Job tomarJobEnEjecucion() throws InterruptedException {
         while (jobsEnEjecucion.isEmpty()) {
             if (schedulerTerminado && jobsEnCola.isEmpty() && jobsEnEjecucion.isEmpty()) {
-                notifyAll(); // 🔥 DESPERTADOR: Avisa a otros hilos de esta misma etapa
-                return null; // El Worker ahora sabe que puede morir
+                notifyAll(); 
+                return null; 
             }
             wait();
         }
@@ -90,8 +90,8 @@ public class Cluster {
     public synchronized Job tomarJobFinalizado() throws InterruptedException {
         while (jobsFinalizados.isEmpty()) {
             if (schedulerTerminado && jobsEnCola.isEmpty() && jobsEnEjecucion.isEmpty()&&jobsFinalizados.isEmpty()) {
-                notifyAll(); // 🔥 DESPERTADOR: Avisa a otros hilos de esta misma etapa
-                return null; // El Worker ahora sabe que puede morir
+                notifyAll(); 
+                return null; 
             }
             wait();
         }

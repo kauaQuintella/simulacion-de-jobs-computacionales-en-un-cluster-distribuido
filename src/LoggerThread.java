@@ -14,14 +14,14 @@ public class LoggerThread implements Runnable {
 
     @Override
     public void run() {
-        // Usamos try-with-resources para que el archivo se cierre solo al final
+        
         try (PrintWriter writer = new PrintWriter(new FileWriter("log_sistema_cluster.txt"))) {
 
             writer.println("=== INICIO DE LOG DE SISTEMA CLUSTER ===");
 
             while (true) {
                 try {
-                    Thread.sleep(200); // Frecuencia de muestreo según consigna
+                    Thread.sleep(200); // Frecuencia de muestreo 
 
                     // Captura de datos fresca
                     int fallidos = cluster.getCantidadFallidos();
@@ -42,16 +42,16 @@ public class LoggerThread implements Runnable {
                     System.out.println(metrica);
                     writer.println(metrica);
 
-                    // Condición de cierre definitiva
+                    // Condición de cierre 
                     if (total == 500 && vacio) {
                         long fin = System.currentTimeMillis();
                         double segundos = (fin - timer) / 1000.0;
 
                         String reporteFinal = "\n--- REPORTE FINAL ---\n" +
                                 "Jobs Totales Procesados: " + total + "\n" +
-                                "Validados con éxito: " + validados + "\n" +
+                                "Validados con exito: " + validados + "\n" +
                                 "Fallidos/Inconsistentes: " + fallidos + "\n" +
-                                "Tiempo total de ejecución: " + segundos + " segundos\n" +
+                                "Tiempo total de ejecucion: " + segundos + " segundos\n" +
                                 "PROCESAMIENTO TERMINADO";
                         // Obtenemos el uso de los 200 nodos
                         String statsNodos = cluster.obtenerEstadisticasNodos();

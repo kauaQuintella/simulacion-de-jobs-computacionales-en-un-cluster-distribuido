@@ -74,7 +74,7 @@ public class Main {
                     e.printStackTrace();
                 }
             }
-            cluster.setSchedulerTerminado(); // 🔥 ahora sí correcto
+            cluster.setSchedulerTerminado(); 
         }).start();
     }
 }

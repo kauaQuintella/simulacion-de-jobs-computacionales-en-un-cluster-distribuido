@@ -15,11 +15,9 @@ public class SchedulerThread implements Runnable {
         for (Job job : jobs) {
             boolean asignado = false;
             while (!asignado) {
-                // El Cluster ya se encargó de buscarlo Y reservarlo (marcarlo OCUPADO)
                 Nodo nodo = cluster.buscarNodoLibre();
 
                 if (nodo != null) {
-                    // Ya no preguntamos if(nodo.asignarJob()), porque ya se hizo dentro de buscarNodoLibre
                     job.asignarNodo(nodo);
                     cluster.moverACola(job);
                     asignado = true;

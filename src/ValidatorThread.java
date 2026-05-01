@@ -16,22 +16,6 @@ public class ValidatorThread implements Runnable {
             try {
                 Job job = cluster.tomarJobEnCola(); // espera si no hay
 
-//                if (job == null) {
-//
-//                    if (cluster.isSchedulerTerminado()) {
-//                        // espera un poco por si quedan jobs en tránsito
-////                        Thread.sleep(50);
-//
-//                        // reintenta
-//                        job = cluster.tomarJobEnCola();
-//
-//                        if (job == null) {
-//                            break; // ahora sí termina
-//                        }
-//                    } else {
-//                        continue;
-//                    }
-//                }
                 if (job == null) {
 
                     if (cluster.isSchedulerTerminado() && cluster.getTotalFinal() >= 500) {
@@ -47,7 +31,7 @@ public class ValidatorThread implements Runnable {
                 int prob = random.nextInt(100);
 
                 if (prob < 85) {
-                    // ✅ válido
+                    // valido
                     nodo.liberar();
                     cluster.moverAEjecucion(job);
 

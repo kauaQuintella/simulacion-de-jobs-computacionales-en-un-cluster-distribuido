@@ -15,12 +15,12 @@ public class AuditorThread implements Runnable {
         while (true) {
             try {
                 Job job = cluster.tomarJobFinalizado();
-                if (job == null) break; // Si recibe null, el hilo termina limpiamente
-
+                if (job == null) break; 
+                
                 int prob = random.nextInt(100);
 
                 if (prob < 95) {
-                    // ✅ correcto
+                    // correcto
                     cluster.moverAValidados(job);
                 } else {
                     // inconsistente
