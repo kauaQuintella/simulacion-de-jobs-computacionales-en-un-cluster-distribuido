@@ -42,7 +42,7 @@ public class ValidatorThread implements Runnable {
                 }
 
                 // Simula tiempo de validación
-                Thread.sleep(80);
+                Thread.sleep(50);
 
 
             } catch (InterruptedException e) {
