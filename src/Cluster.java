@@ -56,14 +56,24 @@ public class Cluster {
     public synchronized Job tomarJobEnCola() throws InterruptedException {
         while (jobsEnCola.isEmpty()) {
             if (schedulerTerminado && jobsEnCola.isEmpty()) {
-                notifyAll(); 
+                notifyAll();
                 return null;
             }
             wait();
         }
-        return jobsEnCola.poll();
-    }
 
+        // Selección aleatoria
+        int index = random.nextInt(jobsEnCola.size());
+
+        // Convertimos a lista para acceder por índice
+        List<Job> lista = new ArrayList<>(jobsEnCola);
+        Job seleccionado = lista.get(index);
+
+        // Lo eliminamos de la cola original
+        jobsEnCola.remove(seleccionado);
+
+        return seleccionado;
+    }
     // METODOS PARA EJECUCIÓN
     public synchronized void moverAEjecucion(Job job) {
         jobsEnEjecucion.add(job);
